@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "lodash-es": "^4.17.10",
-    "preact": "^8.2.9"
+    "preact": "^8.2.9",
+    "preact-layoutview": "^1.0.9",
+    "preact-scroller": "^1.0.12",
+    "preact-text": "^1.0.12"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
