@@ -1,11 +1,28 @@
 const path = require("path");
+const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const getEntries = dir => {
+  const pagesDir = path.resolve(__dirname, dir);
+  let entry = {};
+  fs.readdirSync(pagesDir).forEach(file => {
+    const fullpath = path.join(pagesDir, file, "entry.js");
+    entry[file] = fullpath;
+  });
+  return entry;
+};
+const entries = getEntries("./pages");
+const HtmlWebpackPlugins = Object.keys(entries).map(k => {
+  return new HtmlWebpackPlugin({
+    title: k,
+    filename: `${k}.html`,
+    template: "./template.html",
+    chunks: ["common", k]
+  });
+});
 module.exports = {
   mode: "development",
-  entry: {
-    home: "./pages/home/entry.js",
-    user: "./pages/user/entry.js"
-  },
+  entry: entries,
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[hash].js" // string
@@ -32,20 +49,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "home",
-      filename: "home.html",
-      template: "./template.html",
-      chunks: ["common", "home"]
-    }),
-    new HtmlWebpackPlugin({
-      title: "user",
-      filename: "user.html",
-      template: "./template.html",
-      chunks: ["common", "user"]
-    })
-  ],
+  plugins: [...HtmlWebpackPlugins],
   optimization: {
     splitChunks: {
       chunks: "all",
