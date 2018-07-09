@@ -11,7 +11,7 @@ const getEntries = dir => {
   });
   return entry;
 };
-const entries = getEntries("./pages");
+const entries = getEntries("./src/pages");
 const HtmlWebpackPlugins = Object.keys(entries).map(k => {
   return new HtmlWebpackPlugin({
     title: k,
@@ -32,6 +32,7 @@ module.exports = {
       {
         enforce: "pre",
         test: /\.jsx?$/,
+        include: [path.resolve(__dirname, "src")],
         use: {
           loader: "babel-loader",
           options: {
