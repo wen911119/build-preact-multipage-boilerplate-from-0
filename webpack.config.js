@@ -1,7 +1,8 @@
 const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const PostCompilePlugin = require("webpack-post-compile-plugin");
 const getEntries = dir => {
   const pagesDir = path.resolve(__dirname, dir);
   let entry = {};
@@ -30,7 +31,6 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
         test: /\.jsx?$/,
         include: [path.resolve(__dirname, "src")],
         use: {
@@ -49,7 +49,11 @@ module.exports = {
       }
     ]
   },
-  plugins: [...HtmlWebpackPlugins, new CleanWebpackPlugin(["dist"])],
+  plugins: [
+    ...HtmlWebpackPlugins,
+    new CleanWebpackPlugin(["dist"]),
+    new PostCompilePlugin()
+  ],
   optimization: {
     splitChunks: {
       chunks: "all",

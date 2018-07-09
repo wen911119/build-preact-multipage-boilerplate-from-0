@@ -13,10 +13,11 @@
   "dependencies": {
     "lodash-es": "^4.17.10",
     "preact": "^8.2.9",
-    "preact-layoutview": "^1.0.9",
-    "preact-scroller": "^1.0.12",
-    "preact-text": "^1.0.12"
+    "preact-layoutview": "^1.0.13",
+    "preact-scroller": "^1.0.13",
+    "preact-text": "^1.0.13"
   },
+  "compileDependencies": ["preact-layoutview", "preact-scroller", "preact-text"],
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
@@ -31,6 +32,6 @@
     "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
-    "webpack-serve": "^1.0.4"
+    "webpack-post-compile-plugin": "^0.4.1"
   }
 }
