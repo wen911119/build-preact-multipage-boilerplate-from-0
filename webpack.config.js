@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const getEntries = dir => {
   const pagesDir = path.resolve(__dirname, dir);
   let entry = {};
@@ -49,7 +49,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [...HtmlWebpackPlugins],
+  plugins: [...HtmlWebpackPlugins, new CleanWebpackPlugin(["dist"])],
   optimization: {
     splitChunks: {
       chunks: "all",
