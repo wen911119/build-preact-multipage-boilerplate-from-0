@@ -1,6 +1,17 @@
-import { join } from "lodash-es";
-function Hello() {
-  return join(["4", "5", "6"], "_");
-}
+import { h, Component } from "preact";
+import { XCenterView } from "preact-layoutview";
+import Text from "preact-text";
 
-export default Hello;
+import WithNav from "../../components/WithNav";
+
+const UserPage = ({ $nav: { backTo } }) => {
+  return (
+    <div onClick={() => backTo("list")}>
+      <XCenterView height={300}>
+        <Text>user</Text>
+      </XCenterView>
+    </div>
+  );
+};
+
+export default WithNav(UserPage);
