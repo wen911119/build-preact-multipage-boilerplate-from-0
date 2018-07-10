@@ -56,22 +56,11 @@ module.exports = {
   ],
   optimization: {
     splitChunks: {
-      chunks: "all",
-      minSize: 3000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: "~",
-      name: "common",
       cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true
+        common: {
+          chunks: "all",
+          test: /[\\/]node_modules[\\/](preact|preact-layoutview)[\\/]/,
+          name: "common"
         }
       }
     }
