@@ -6,7 +6,7 @@ import WithNav from "../../components/WithNav";
 
 const UserPage = ({ $nav: { backTo } }) => {
   return (
-    <div onClick={() => backTo("list")}>
+    <div onClick={() => backTo("list", {name: 'wj'})}>
       <XCenterView height={300}>
         <Text>user</Text>
       </XCenterView>

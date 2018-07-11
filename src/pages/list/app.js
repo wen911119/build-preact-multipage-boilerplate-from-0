@@ -34,6 +34,9 @@ export default class ListPage extends Component {
     this.props.$nav.onPop(p => {
       this.setState({ list: [1, 2, 3, 4, p.name] });
     });
+    this.props.$nav.onBack(p => {
+      this.setState({ list: [1, 2, 3, p.name] });
+    });
   }
   loadmore(done) {
     console.log("load-more");
