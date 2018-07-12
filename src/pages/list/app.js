@@ -4,7 +4,7 @@ import { XCenterView } from "preact-layoutview";
 import Text from "preact-text";
 import WithNav from "../../components/WithNav";
 import Page from "../../components/Page";
-
+import Swiper from "../../components/Swiper";
 const renderHeader = () => (
   <XCenterView height={100} bgColor="#ccc">
     <Text>标题</Text>
@@ -83,6 +83,7 @@ export default class ListPage extends Component {
         }}
         bgColor="#f4f4f4"
       >
+        <Swiper />
         <Scroller loadmore={this.loadmore} refresh={this.refresh}>
           <List data={list} />
         </Scroller>
