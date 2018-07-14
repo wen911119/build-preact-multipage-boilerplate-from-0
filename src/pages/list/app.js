@@ -83,10 +83,14 @@ export default class ListPage extends Component {
         }}
         bgColor="#f4f4f4"
       >
-        <Swiper />
-        <Scroller loadmore={this.loadmore} refresh={this.refresh}>
-          <List data={list} />
-        </Scroller>
+        <Swiper>
+          <Scroller height={400} loadmore={this.loadmore} refresh={this.refresh}>
+            <List data={list} />
+          </Scroller>
+          <Scroller height={400} loadmore={this.loadmore} refresh={this.refresh}>
+            <List data={list} />
+          </Scroller>
+        </Swiper>
       </Page>
     );
   }
