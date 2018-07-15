@@ -17,6 +17,11 @@ const innerStyle = {
 
 @WithEnv
 class Swiper extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.index !== this.state.index) {
+      this.switchTo(nextProps.index);
+    }
+  }
   onTouchStart(e) {
     this.touchStart = e.touches[0];
     this.setState({ animation: false });
@@ -46,19 +51,24 @@ class Swiper extends Component {
   }
   onTouchEnd(e) {
     if (Math.abs(this.distance) > 50) {
-      //
-      const direction = this.distance > 0 ? 1 : -1;
-      this.setState({
-        translateX:
-          this.lastTranslateX + direction * this.props.$env.containerWidth,
-        animation: true,
-        index: this.state.index - direction * 1
-      });
+      const direction = this.distance > 0 ? -1 : 1;
+      this.switchTo(this.state.index + direction);
     } else if (Math.abs(this.distance) > 0) {
-      this.setState({
-        translateX: this.lastTranslateX,
-        animation: true
-      });
+      this.switchTo(this.state.index, true);
+    }
+  }
+  switchTo(index, isReset) {
+    if (index !== this.state.index || isReset) {
+      this.setState(
+        {
+          translateX: this.props.$env.containerWidth * (index - 1) * -1,
+          animation: true,
+          index: index
+        },
+        () => {
+          this.props.onChange && this.props.onChange(index);
+        }
+      );
     }
   }
   constructor(props) {
@@ -67,6 +77,7 @@ class Swiper extends Component {
     this.onTouchStart = this.onTouchStart.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
     this.onTouchEnd = this.onTouchEnd.bind(this);
+    this.switchTo = this.switchTo.bind(this);
     this.state = {
       translateX: 0,
       animation: false,

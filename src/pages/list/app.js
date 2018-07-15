@@ -40,8 +40,13 @@ export default class ListPage extends Component {
     super(props);
     this.loadmore = this.loadmore.bind(this);
     this.refresh = this.refresh.bind(this);
+    this.onTabChange = this.onTabChange.bind(this);
     this.state = {
-      list: [1, 2, 3, 4, 5, 6, 7, 8]
+      list: [1, 2, 3, 4, 5, 6, 7, 8],
+      index: 1
+    };
+    this.ref = c => {
+      this.swiper = c;
     };
   }
   componentDidMount() {
@@ -70,7 +75,10 @@ export default class ListPage extends Component {
       done();
     }, 2000);
   }
-  render({}, { list }) {
+  onTabChange(index) {
+    this.setState({ index });
+  }
+  render({}, { list, index }) {
     return (
       <Page
         header={{
@@ -83,14 +91,36 @@ export default class ListPage extends Component {
         }}
         bgColor="#f4f4f4"
       >
-        <Swiper>
-          <Scroller height={400} loadmore={this.loadmore} refresh={this.refresh}>
+        <Swiper ref={this.ref} onChange={this.onTabChange} index={index}>
+          <Scroller
+            height={400}
+            loadmore={this.loadmore}
+            refresh={this.refresh}
+          >
             <List data={list} />
           </Scroller>
-          <Scroller height={400} loadmore={this.loadmore} refresh={this.refresh}>
+          <Scroller
+            height={400}
+            loadmore={this.loadmore}
+            refresh={this.refresh}
+          >
             <List data={list} />
           </Scroller>
         </Swiper>
+        <div>
+          <div
+            style={{ color: index === 1 ? "red" : "#000" }}
+            onClick={() => this.setState({ index: 1 })}
+          >
+            1
+          </div>
+          <div
+            style={{ color: index === 2 ? "red" : "#000" }}
+            onClick={() => this.setState({ index: 2 })}
+          >
+            2
+          </div>
+        </div>
       </Page>
     );
   }
