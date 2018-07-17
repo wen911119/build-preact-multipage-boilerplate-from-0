@@ -19,6 +19,12 @@ const renderFooter = () => (
 
 @WithNav
 class List extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.data === this.props.data) {
+      return false;
+    }
+    return true;
+  }
   render({ data, $nav: { push } }) {
     return (
       <div>
