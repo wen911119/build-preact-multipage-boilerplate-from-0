@@ -4,7 +4,7 @@ import { XCenterView } from "preact-layoutview";
 import Text from "preact-text";
 import WithNav from "../../components/WithNav";
 import Page from "../../components/Page";
-import Swiper from "../../components/Swiper";
+import Tabs from "../../components/Tabs";
 const renderHeader = () => (
   <XCenterView height={100} bgColor="#ccc">
     <Text>标题</Text>
@@ -49,7 +49,8 @@ export default class ListPage extends Component {
     this.onTabChange = this.onTabChange.bind(this);
     this.state = {
       list: [1, 2, 3, 4, 5, 6, 7, 8],
-      index: 1
+      index: 1,
+      scrollerHeight: "calc(100vh - 3.99999rem)"
     };
     this.ref = c => {
       this.swiper = c;
@@ -84,7 +85,7 @@ export default class ListPage extends Component {
   onTabChange(index) {
     this.setState({ index });
   }
-  render({}, { list, index }) {
+  render({}, { list, index, scrollerHeight }) {
     return (
       <Page
         header={{
@@ -96,37 +97,29 @@ export default class ListPage extends Component {
           render: renderFooter
         }}
         bgColor="#f4f4f4"
+        fill={true}
       >
-        <Swiper ref={this.ref} onChange={this.onTabChange} index={index}>
+        <Tabs
+          onChange={this.onTabChange}
+          index={index}
+          titles={["进行中的", "全部订单"]}
+          fill={true}
+        >
           <Scroller
-            height={400}
+            height={"100%"}
             loadmore={this.loadmore}
             refresh={this.refresh}
           >
             <List data={list} />
           </Scroller>
           <Scroller
-            height={400}
+            height={"100%"}
             loadmore={this.loadmore}
             refresh={this.refresh}
           >
             <List data={list} />
           </Scroller>
-        </Swiper>
-        <div>
-          <div
-            style={{ color: index === 1 ? "red" : "#000" }}
-            onClick={() => this.setState({ index: 1 })}
-          >
-            1
-          </div>
-          <div
-            style={{ color: index === 2 ? "red" : "#000" }}
-            onClick={() => this.setState({ index: 2 })}
-          >
-            2
-          </div>
-        </div>
+        </Tabs>
       </Page>
     );
   }
