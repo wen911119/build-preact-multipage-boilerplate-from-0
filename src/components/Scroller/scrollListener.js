@@ -59,7 +59,7 @@ export default class ScrollListener extends Component {
     this.updatePosition(clientHeight, scrollHeight, scrollTop);
   }
   render(
-    { children, height, ...otherProps },
+    { children, height, style = {}, ...otherProps },
     { position, contentHeight, containerHeight }
   ) {
     let _style = {
@@ -68,11 +68,11 @@ export default class ScrollListener extends Component {
     if (height) {
       _style = {
         height,
-        overflowY: "auto",
+        overflowY: "auto"
       };
     }
     return (
-      <div style={_style} ref={s => (this.scrollWrap = s)}>
+      <div style={Object.assign(_style, style)} ref={s => (this.scrollWrap = s)}>
         {cloneElement(children[0], {
           position,
           contentHeight,

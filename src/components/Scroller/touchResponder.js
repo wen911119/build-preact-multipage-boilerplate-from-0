@@ -58,7 +58,6 @@ export default class TouchResponder extends Component {
     };
   }
   render({ children, ...otherProps }, { distance, action }) {
-    console.log(distance, action)
     return (
       <div
         onTouchMove={this.onTouchMove}
