@@ -4,6 +4,43 @@ import Text from "preact-text";
 import { Scroller, ScrollerWithRefresh, ScrollerWithLoadMore, ScrollerWithRefreshAndLoadMore } from "../../components/Scroller";
 import WithNav from "../../components/WithNav";
 
+const CustomLoadMoreFooter = ({ nomore }) => (
+  <div style={{ lineHeight: "50px", textAlign: "center", fontSize: "14px" }}>
+    {nomore ? "nomore～" : "loading..."}
+  </div>
+);
+const CustomRefreshHeader = ({ stage, percent }) => {
+  let text;
+  switch (stage) {
+    case 2:
+      text = "释放刷新2";
+      break;
+    case 3:
+      text = "正在刷新3";
+      break;
+    case 4:
+      text = "刷新完成4";
+      break;
+    default:
+      text = "下拉刷新1";
+      break;
+  }
+  return (
+    <div
+      style={{
+        marginTop: "-50px",
+        height: "50px",
+        lineHeight: "50px",
+        backgroundColor: "#eaeaea",
+        textAlign: "center",
+        fontSize: "14px"
+      }}
+    >
+      {text}
+      {percent.toFixed(2)}%
+    </div>
+  );
+};
 class List extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.list !== nextProps.list) {
@@ -91,7 +128,7 @@ export default class UserPage extends Component {
               e.preventDefault();
             }}
           />
-          <ScrollerWithRefreshAndLoadMore height="400px" style={{ backgroundColor: "#fff" }} onLoadMore={this.onLoadMore} onRefresh={this.onRefresh}>
+          <ScrollerWithRefreshAndLoadMore refreshHeader={CustomRefreshHeader} loadMoreFooter={CustomLoadMoreFooter} height="400px" style={{ backgroundColor: "#fff" }} onLoadMore={this.onLoadMore} onRefresh={this.onRefresh}>
             <List list={list} />
           </ScrollerWithRefreshAndLoadMore>
         </div>
