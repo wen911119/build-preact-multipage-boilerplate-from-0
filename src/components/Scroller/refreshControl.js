@@ -1,6 +1,4 @@
 import { h, Component, cloneElement } from "preact";
-import { XCenterView } from "preact-layoutview";
-import Text from "preact-text";
 
 const DefaultRefreshHeader = ({ stage, percent }) => {
   let text;
@@ -19,12 +17,19 @@ const DefaultRefreshHeader = ({ stage, percent }) => {
       break;
   }
   return (
-    <XCenterView bgColor="#ccc" style={{ marginTop: "-50px", height: "50px" }}>
-      <Text>
-        {text}
-        {percent.toFixed(2)}%
-      </Text>
-    </XCenterView>
+    <div
+      style={{
+        marginTop: "-50px",
+        height: "50px",
+        lineHeight: "50px",
+        backgroundColor: "#eaeaea",
+        textAlign: "center",
+        fontSize: "14px"
+      }}
+    >
+      {text}
+      {percent.toFixed(2)}%
+    </div>
   );
 };
 
