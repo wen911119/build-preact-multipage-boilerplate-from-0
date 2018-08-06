@@ -16,7 +16,7 @@
     "preact": "^8.2.9",
     "preact-layoutview": "^1.0.13",
     "preact-line": "^1.0.13",
-    "preact-scroller": "^1.0.19",
+    "preact-scroller": "^1.0.20",
     "preact-text": "^1.0.13"
   },
   "compileDependencies": [

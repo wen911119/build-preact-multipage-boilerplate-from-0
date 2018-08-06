@@ -1,5 +1,5 @@
 import { h, Component } from "preact";
-import { ScrollerWithRefreshAndLoadMore } from "../../components/Scroller";
+import { ScrollerWithRefreshAndLoadMore } from "preact-scroller";
 import { XCenterView } from "preact-layoutview";
 import Text from "preact-text";
 import WithNav from "../../components/WithNav";
