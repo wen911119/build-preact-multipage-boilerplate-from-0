@@ -1,5 +1,5 @@
 import { h, Component } from "preact";
-import Scroller from "preact-scroller";
+import { ScrollerWithRefreshAndLoadMore } from "../../components/Scroller";
 import { XCenterView } from "preact-layoutview";
 import Text from "preact-text";
 import WithNav from "../../components/WithNav";
@@ -105,20 +105,20 @@ export default class ListPage extends Component {
           titles={["进行中的", "全部订单"]}
           fill={true}
         >
-          <Scroller
+          <ScrollerWithRefreshAndLoadMore
             height={"100%"}
-            loadmore={this.loadmore}
-            refresh={this.refresh}
+            onLoadmore={this.loadmore}
+            onRefresh={this.refresh}
           >
             <List data={list} />
-          </Scroller>
-          <Scroller
+          </ScrollerWithRefreshAndLoadMore>
+          <ScrollerWithRefreshAndLoadMore
             height={"100%"}
-            loadmore={this.loadmore}
-            refresh={this.refresh}
+            onLoadmore={this.loadmore}
+            onRefresh={this.refresh}
           >
             <List data={list} />
-          </Scroller>
+          </ScrollerWithRefreshAndLoadMore>
         </Tabs>
       </Page>
     );
