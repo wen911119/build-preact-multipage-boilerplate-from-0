@@ -7,13 +7,14 @@ export default class IndexPage extends Component {
     super(props)
     this.goTo = this.goTo.bind(this)
   }
-  goTo () {
-    this.props.$nav.push('home')
+  goTo (path) {
+    this.props.$nav.push(path)
   }
   render() {
     return (
-      <div onClick={this.goTo}>
-        IndexPage
+      <div >
+        <div onClick={this.goTo.bind(this, 'home')}>跳转到HomePage</div>
+        <div onClick={this.goTo.bind(this, 'list')}>跳转到ListPage</div>
       </div>
     );
   }
