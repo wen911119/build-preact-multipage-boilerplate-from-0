@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const ip = require("ip");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const PostCompilePlugin = require("webpack-post-compile-plugin");
@@ -66,6 +67,6 @@ module.exports = {
     }
   },
   devServer: {
-    host: "0.0.0.0"
+    host: ip.address()
   }
 };

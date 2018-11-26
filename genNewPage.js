@@ -1,4 +1,5 @@
 const fs = require("fs");
+const ip = require("ip");
 const { COPYFILE_EXCL } = fs.constants;
 const path = require("path");
 const currentDir = process.cwd();
@@ -8,7 +9,6 @@ const templateDir = path.resolve(currentDir, "./.template");
 const apps = process.argv.slice(2);
 
 apps.forEach(page => {
-  // const pageNameUC = ucFirst(page)
   const newPagePath = `${webPagesDir}/${page}`;
   fs.mkdir(newPagePath, err => {
     if (err) {
@@ -32,6 +32,41 @@ apps.forEach(page => {
         });
       }
     });
+  });
+  const newWechtPagePath = `${wechatPagesDir}/${page}`;
+  fs.mkdir(newWechtPagePath, err => {
+    if (err) {
+      console.log(`目录${newWechtPagePath}已存在`);
+      return;
+    }
+    copy(`${templateDir}/wechat-page`, newWechtPagePath, path => {
+      console.log(path);
+      if (path.indexOf("index.js") < 0) {
+        fs.readFile(path, "utf8", (err, code) => {
+          if (err) {
+            console.log(err);
+          } else {
+            code = code.replace(
+              /###_page-url_###/g,
+              `http://${ip.address()}:8080/${page}.html`
+            );
+            fs.writeFile(path, code, "utf8", function(err) {
+              if (err) {
+                console.log(err);
+              }
+            });
+          }
+        });
+      }
+    });
+  });
+
+  const wechatRouteConfigPath = `${currentDir}/wechat/app.json`;
+  fs.readFile(wechatRouteConfigPath, "utf8", (err, data) => {
+    if (err) console.log(err);
+    let config = JSON.parse(data);
+    config.pages.push(`pages/${page}/index`);
+    fs.writeFileSync(wechatRouteConfigPath, JSON.stringify(config));
   });
 });
 

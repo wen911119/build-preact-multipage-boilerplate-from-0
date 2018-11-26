@@ -1,2 +1,2 @@
 <!--index.wxml-->
-<web-view src='###_page-url_###'></web-view>
+<web-view src='###_page-url_###?_c=mp'></web-view>
