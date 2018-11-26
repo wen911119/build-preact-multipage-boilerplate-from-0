@@ -23,7 +23,7 @@ const nav = {
     const newAppInfoStr = encodeURI(JSON.stringify(newAppInfo));
     if (typeof wx !== "undefined") {
       wx.miniProgram.navigateTo({
-        url: `/pages/${path}/${path}?_p=${newAppInfoStr}`
+        url: `/pages/${path}/index?_p=${newAppInfoStr}`
       });
     } else {
       window.location.href = `/${path}.html?_p=${newAppInfoStr}`;
