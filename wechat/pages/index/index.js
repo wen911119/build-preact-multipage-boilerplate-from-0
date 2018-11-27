@@ -5,14 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    url: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (routeParams) {
+    const app = getApp()
+    this.setData({url: `${app.globalData.host}/index.html?_c=mp&_p=${routeParams._p}`})
   },
 
   /**
