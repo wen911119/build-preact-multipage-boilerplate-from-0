@@ -1,7 +1,5 @@
-console.log('+++++++++++================================>>>>>>>>>>>>>')
 const globby = require('globby');
 const ip = require("ip");
-
 const fse = require('fs-extra');
 (async ()=>{
   const paths = await globby('wechat/pages/*/*.wxml')
@@ -12,5 +10,7 @@ const fse = require('fs-extra');
     const ret = await fse.writeFile(path, content, 'utf8')
     return ret
   }))
-  console.log(rets)
+  if (rets.some(ret=>!!ret)) {
+    console.log('更新ip失败！')
+  }
 })()
