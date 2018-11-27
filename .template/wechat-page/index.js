@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (routeParams) {
     const app = getApp()
-    this.setData({url: `${app.globalData.host}/***_page-name_***.html?_c=mp&_p=${routeParams._p}`})
+    this.setData({url: `${app.globalData.host}/###_page-name_###.html?_c=mp&_p=${routeParams._p}`})
   },
 
   /**
