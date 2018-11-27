@@ -1,2 +1,0 @@
-<!--index.wxml-->
-<web-view src='http://10.100.0.28:8080/home.html?_c=mp'></web-view>
