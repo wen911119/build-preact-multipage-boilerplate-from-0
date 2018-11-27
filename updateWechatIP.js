@@ -2,7 +2,7 @@ const ip = require("ip");
 const fse = require('fs-extra');
 const currentDir = process.cwd();
 const argvs = process.argv.slice(2)
-const port = argvs[0] || '8081';
+const port = argvs[0] || '8080';
 
 (async ()=>{
   const targetPath = `${currentDir}/wechat/app.js`
