@@ -53,7 +53,9 @@ const nav = {
         target: path
       };
       localStorage.setItem("on-pop-back-params", JSON.stringify(onBackParams));
-      const index = appInfo.paths.indexOf(path);
+      let index = appInfo.paths.indexOf(path);
+      // 找不到就去首页
+      index = index === -1 ? 0 : index
       const backSteps = appInfo.paths.length - index - 1;
       if (typeof wx !== "undefined") {
         wx.miniProgram.navigateBack({
