@@ -38,12 +38,27 @@ module.exports = {
           loader: "babel-loader",
           options: {
             plugins: [
-              ["transform-react-jsx", { pragma: "h" }],
-              "transform-decorators-legacy",
-              "transform-object-rest-spread",
+              "@babel/plugin-syntax-dynamic-import",
+              [
+                "@babel/plugin-proposal-decorators",
+                {
+                  legacy: true
+                }
+              ],
+              ["@babel/plugin-proposal-class-properties", {
+                loose: true
+              }],
+              ["transform-object-rest-spread", {
+                useBuiltIns: true
+              }],
               "transform-export-extensions",
-              "syntax-dynamic-import",
-              "transform-react-constant-elements"
+              "@babel/plugin-transform-react-constant-elements",
+              [
+                "transform-react-jsx",
+                {
+                  pragma: "h"
+                }
+              ]
             ]
           }
         }
