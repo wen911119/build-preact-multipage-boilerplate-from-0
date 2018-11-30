@@ -34,11 +34,13 @@
         document.head.appendChild(wxscript);
       }
     </script>
+    <% if (process.env.NODE_ENV === 'development') { %>
     <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
     <script>
       // init vConsole
       var vConsole = new VConsole();
     </script>
+    <% } %>
   </head>
 
   <body></body>
