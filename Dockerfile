@@ -10,6 +10,7 @@ RUN npm install
 RUN npm run build
 RUN ls
 
+
 # 第二阶段上传
 FROM wen911119/oss-uploader
 COPY --from=npm-builder /root/dist /bundle
