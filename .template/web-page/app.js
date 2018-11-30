@@ -1,11 +1,11 @@
-import { h, Component } from "preact";
+import { h, Component } from "preact"
 
 export default class ###_page-name_### extends Component {
-  render() {
+  render () {
     return (
       <div>
         ###_page-name_###
       </div>
-    );
+    )
   }
 }

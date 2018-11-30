@@ -1,62 +1,68 @@
-const path = require("path");
-const fs = require("fs");
-const ip = require("ip");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
-const PostCompilePlugin = require("webpack-post-compile-plugin");
+const path = require('path')
+const fs = require('fs')
+const ip = require('ip')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const PostCompilePlugin = require('webpack-post-compile-plugin')
 const getEntries = dir => {
-  const pagesDir = path.resolve(__dirname, dir);
-  let entry = {};
+  const pagesDir = path.resolve(__dirname, dir)
+  let entry = {}
   fs.readdirSync(pagesDir).forEach(file => {
-    const fullpath = path.join(pagesDir, file, "entry.js");
-    entry[file] = fullpath;
-  });
-  return entry;
-};
-const entries = getEntries("./src/pages");
+    const fullpath = path.join(pagesDir, file, 'entry.js')
+    entry[file] = fullpath
+  })
+  return entry
+}
+const entries = getEntries('./src/pages')
 const HtmlWebpackPlugins = Object.keys(entries).map(k => {
   return new HtmlWebpackPlugin({
     title: k,
     filename: `${k}.html`,
-    template: "./template.html",
-    chunks: ["common", k]
-  });
-});
+    template: './template.html',
+    chunks: ['common', k]
+  })
+})
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: entries,
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[hash].js" // string
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash].js' // string
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [path.resolve(__dirname, "src")],
+        include: [path.resolve(__dirname, 'src')],
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             plugins: [
-              "@babel/plugin-syntax-dynamic-import",
+              '@babel/plugin-syntax-dynamic-import',
               [
-                "@babel/plugin-proposal-decorators",
+                '@babel/plugin-proposal-decorators',
                 {
                   legacy: true
                 }
               ],
-              ["@babel/plugin-proposal-class-properties", {
-                loose: true
-              }],
-              ["transform-object-rest-spread", {
-                useBuiltIns: true
-              }],
-              "transform-export-extensions",
-              "@babel/plugin-transform-react-constant-elements",
               [
-                "transform-react-jsx",
+                '@babel/plugin-proposal-class-properties',
                 {
-                  pragma: "h"
+                  loose: true
+                }
+              ],
+              [
+                'transform-object-rest-spread',
+                {
+                  useBuiltIns: true
+                }
+              ],
+              'transform-export-extensions',
+              '@babel/plugin-transform-react-constant-elements',
+              [
+                'transform-react-jsx',
+                {
+                  pragma: 'h'
                 }
               ]
             ]
@@ -67,16 +73,16 @@ module.exports = {
   },
   plugins: [
     ...HtmlWebpackPlugins,
-    new CleanWebpackPlugin(["dist"]),
+    new CleanWebpackPlugin(['dist']),
     new PostCompilePlugin()
   ],
   optimization: {
     splitChunks: {
       cacheGroups: {
         common: {
-          chunks: "all",
+          chunks: 'all',
           test: /[\\/]node_modules[\\/](preact|preact-layoutview)[\\/]/,
-          name: "common"
+          name: 'common'
         }
       }
     }
@@ -84,4 +90,4 @@ module.exports = {
   devServer: {
     host: ip.address()
   }
-};
+}

@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "dev": "node updateWechatIP.js && webpack-dev-server --hot",
-    "gen": "node genNewPage.js"
+    "gen": "node genNewPage.js",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore"
   },
   "author": "",
   "license": "ISC",
@@ -32,11 +33,20 @@
     "@babel/plugin-proposal-decorators": "^7.1.6",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-react-constant-elements": "^7.0.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^7.0.0-beta.3",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "eslint": "^5.9.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
     "globby": "^8.0.1",
     "html-webpack-plugin": "^3.2.0",
@@ -45,5 +55,8 @@
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
     "webpack-post-compile-plugin": "^0.4.1"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }

@@ -1,5 +1,5 @@
-import { h, Component } from "preact";
-import WithNav from '../../components/WithNav';
+import { h, Component } from 'preact'
+import WithNav from '../../components/WithNav'
 @WithNav
 export default class HomePage extends Component {
   constructor (props) {
@@ -11,13 +11,13 @@ export default class HomePage extends Component {
       backFrom: 'home'
     })
   }
-  render({$nav}) {
+  render ({ $nav }) {
     return (
       <div>
         HomePage
         <div onClick={$nav.pop}>返回</div>
         <div onClick={this.goBack}>带参数返回</div>
       </div>
-    );
+    )
   }
 }

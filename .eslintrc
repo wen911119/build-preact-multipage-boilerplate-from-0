@@ -1,0 +1,19 @@
+{
+  "extends": ["standard", "standard-react", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": ["error", "never"],
+    "indent": ["error", 2],
+    "react/prop-types": 0
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "h"
+    }
+  }
+}

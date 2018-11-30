@@ -1,5 +1,5 @@
-import { h, Component } from "preact";
-import WithNav from '../../components/WithNav';
+import { h, Component } from 'preact'
+import WithNav from '../../components/WithNav'
 @WithNav
 export default class ListPage extends Component {
   constructor (props) {
@@ -9,12 +9,12 @@ export default class ListPage extends Component {
   goIndex () {
     this.props.$nav.backTo('index')
   }
-  render() {
+  render () {
     return (
       <div>
         ListPage
         <div onClick={this.goIndex}>回到首页</div>
       </div>
-    );
+    )
   }
 }
