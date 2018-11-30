@@ -4,7 +4,8 @@
   "rules": {
     "semi": ["error", "never"],
     "indent": ["error", 2],
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/display-name": 0
   },
   "parserOptions": {
     "ecmaFeatures": {

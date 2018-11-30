@@ -10,7 +10,7 @@ export default class IndexPage extends Component {
     }
   }
   goToHome = () => {
-    this.props.$nav.push('home');
+    this.props.$nav.push('home')
   }
   goToDemo = () => {
     this.props.$nav.push('demo')

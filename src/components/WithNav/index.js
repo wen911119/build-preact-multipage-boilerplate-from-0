@@ -22,6 +22,7 @@ const nav = {
     }
     const newAppInfoStr = encodeURI(JSON.stringify(newAppInfo))
     if (typeof wx !== 'undefined') {
+      // eslint-disable-next-line
       wx.miniProgram.navigateTo({
         url: `/pages/${path}/index?_p=${newAppInfoStr}`
       })
@@ -39,6 +40,7 @@ const nav = {
     }
     window.localStorage.setItem('on-pop-back-params', JSON.stringify(onPopParams))
     if (typeof wx !== 'undefined') {
+      // eslint-disable-next-line
       wx.miniProgram.navigateBack()
     } else {
       window.history.back()
@@ -58,6 +60,7 @@ const nav = {
       index = index === -1 ? 0 : index
       const backSteps = appInfo.paths.length - index - 1
       if (typeof wx !== 'undefined') {
+        // eslint-disable-next-line
         wx.miniProgram.navigateBack({
           delta: backSteps
         })
