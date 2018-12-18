@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <web-view wx:if="{{status==='ok'}}" src="{{url}}" bindload="webLoaded"></web-view>
-<view wx:elif="status==='loading'" class="placeholder"><icon type="waiting" size="30px" /></view>
-<view wx:else class="placeholder"><icon type="warn" size="30px" /></view>
+<view wx:elif="{{status==='loading'}}" class="placeholder"><icon type="waiting" size="30px" /></view>
+<view wx:elif="{{status==='err'}}" class="placeholder"><icon type="warn" size="30px" /></view>
