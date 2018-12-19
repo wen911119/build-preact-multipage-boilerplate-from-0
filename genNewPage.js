@@ -40,7 +40,9 @@ pages.forEach(async page => {
   const configFilePath = `${currentDir}/wechat/app.json`
   let appConfig = await fse.readJSON(configFilePath)
   appConfig.pages.push(`pages/${page}/index`)
-  await fse.writeJSON(configFilePath, appConfig)
+  await fse.writeJSON(configFilePath, appConfig, {
+    spaces: 2
+  })
 })
 
 // 首字母大写

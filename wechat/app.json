@@ -1,1 +1,18 @@
-{"pages":["pages/index/index","pages/home/index","pages/list/index","pages/demo/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#fff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"black"}}
+{
+  "pages": [
+    "pages/index/index",
+    "pages/home/index",
+    "pages/list/index",
+    "pages/demo/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f5f5f5",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "loading": "./components/loading/loading",
+    "error": "./components/fail/fail"
+  }
+}

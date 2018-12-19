@@ -1,10 +1,6 @@
-.placeholder{
+page {
   height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #f5f5f5;
 }
-page{
-  height: 100%;
-}
+
+
