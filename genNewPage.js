@@ -35,11 +35,20 @@ pages.forEach(async page => {
   indexjscontent = indexjscontent.replace(/###_page-name_###/g, page)
   // 回写
   await fse.writeFile(indexjsFilePath, indexjscontent, 'utf8')
+  // 重命名
+  await Promise.all(
+    ['js', 'wxml', 'json', 'wxss'].map(type =>
+      fse.move(
+        `${currentDir}/wechat/pages/${page}/index.${type}`,
+        `${currentDir}/wechat/pages/${page}/${page}.${type}`
+      )
+    )
+  )
 
   // 给小程序增加一条路由
   const configFilePath = `${currentDir}/wechat/app.json`
   let appConfig = await fse.readJSON(configFilePath)
-  appConfig.pages.push(`pages/${page}/index`)
+  appConfig.pages.push(`pages/${page}/${page}`)
   await fse.writeJSON(configFilePath, appConfig, {
     spaces: 2
   })
