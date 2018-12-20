@@ -75,7 +75,7 @@ module.exports = {
       cacheGroups: {
         common: {
           chunks: 'all',
-          test: /[\\/]node_modules[\\/](preact|@ruiyun\/preact-layout-suite|@ruiyun\/preact-m-nav|@ruiyun\/preact-text)[\\/]/,
+          test: /[\\/]node_modules[\\/](preact|axios|@ruiyun\/preact-layout-suite|@ruiyun\/preact-m-nav|@ruiyun\/preact-text)[\\/]/,
           name: 'common'
         }
       }
