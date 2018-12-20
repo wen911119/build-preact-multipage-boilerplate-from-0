@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import WithNav from '../../components/WithNav'
+import WithNav from '@ruiyun/preact-m-nav'
 @WithNav
 export default class ListPage extends Component {
   constructor (props) {

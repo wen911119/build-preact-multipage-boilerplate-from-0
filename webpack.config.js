@@ -3,7 +3,6 @@ const fs = require('fs')
 const ip = require('ip')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const PostCompilePlugin = require('webpack-post-compile-plugin')
 const getEntries = dir => {
   const pagesDir = path.resolve(__dirname, dir)
   let entry = {}
@@ -33,7 +32,6 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        include: [path.resolve(__dirname, 'src')],
         use: {
           loader: 'babel-loader',
           options: {
@@ -71,17 +69,13 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    ...HtmlWebpackPlugins,
-    new CleanWebpackPlugin(['dist']),
-    new PostCompilePlugin()
-  ],
+  plugins: [...HtmlWebpackPlugins, new CleanWebpackPlugin(['dist'])],
   optimization: {
     splitChunks: {
       cacheGroups: {
         common: {
           chunks: 'all',
-          test: /[\\/]node_modules[\\/](preact|preact-layoutview)[\\/]/,
+          test: /[\\/]node_modules[\\/](preact|@ruiyun\/preact-layout-suite|@ruiyun\/preact-m-nav|@ruiyun\/preact-text)[\\/]/,
           name: 'common'
         }
       }
