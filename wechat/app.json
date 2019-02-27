@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/home/home",
     "pages/list/list",
-    "pages/demo/demo"
+    "pages/demo/demo",
+    "pages/zufang/zufang"
   ],
   "window": {
     "backgroundTextStyle": "light",

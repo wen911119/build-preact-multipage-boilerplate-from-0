@@ -32,6 +32,9 @@ export default class IndexPage extends Component {
   goToDemo = () => {
     this.props.$nav.push('demo')
   }
+  goToZufang = () => {
+    this.props.$nav.push('zufang')
+  }
   componentDidMount () {
     this.props.$nav.onPop(p => {
       this.setState({ params: p.backFrom })
@@ -42,6 +45,7 @@ export default class IndexPage extends Component {
       <div>
         <div onClick={this.goToHome}>跳转到HomePage</div>
         <div onClick={this.goToDemo}>跳转到DemoPage</div>
+        <div onClick={this.goToZufang}>跳转到zufang</div>
         <RowView height={100} hAlign='center'>
           <Button width={300} onPress={this.onBtn1Click}>我是扁平按钮</Button>
         </RowView>
