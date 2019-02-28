@@ -1,6 +1,6 @@
 //app.js
 App({
   globalData: {
-    host: 'http://192.168.31.10:8080'
+    host: 'http://10.100.0.149:8080'
   }
 })

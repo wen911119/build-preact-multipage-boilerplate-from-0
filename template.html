@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="browsermode" content="application" />
@@ -23,8 +26,10 @@
       }
       * {
         -webkit-tap-highlight-color: transparent;
-        -webkit-user-select: none;
         box-sizing: border-box;
+      }
+      *:not(input) {
+        -webkit-user-select: none;
       }
     </style>
     <script>
@@ -34,7 +39,7 @@
         document.head.appendChild(wxscript);
       }
     </script>
-    <% if (process.env.NODE_ENV === 'development') { %>
+    <% if (process.env.NODE_ENV === 'development1') { %>
     <script src="https://cdn.bootcss.com/vConsole/3.2.0/vconsole.min.js"></script>
     <script>
       // init vConsole
@@ -43,5 +48,7 @@
     <% } %>
   </head>
 
-  <body><div>loading</div></body>
+  <body>
+    <div>loading</div>
+  </body>
 </html>
