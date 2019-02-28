@@ -4,7 +4,8 @@
     "pages/home/home",
     "pages/list/list",
     "pages/demo/demo",
-    "pages/zufang/zufang"
+    "pages/zufang/zufang",
+    "pages/zfDetail/zfDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
