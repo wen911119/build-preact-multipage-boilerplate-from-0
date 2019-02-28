@@ -129,6 +129,13 @@ export default class ZufangPage extends Component {
         )
       })
       .sort((a, b) => a[sortBy] - b[sortBy])
+      .map(row => {
+        row.img = row.img.replace(
+          'https://image1.ljcdn.com',
+          'https://pic.ruiyun2015.com/zufang'
+        )
+        return row
+      })
   }
   onComfirm = condition => {
     let mergedCondition = Object.assign({}, this.state.filter, condition)
