@@ -16,6 +16,7 @@
     "@ruiyun/preact-icon": "^1.1.11",
     "@ruiyun/preact-image": "^1.1.11",
     "@ruiyun/preact-layout-suite": "^1.1.11",
+    "@ruiyun/preact-m-actionsheet": "^1.1.12",
     "@ruiyun/preact-m-button": "^1.1.11",
     "@ruiyun/preact-m-nav": "^1.1.11",
     "@ruiyun/preact-m-tabs": "^1.1.11",

@@ -10,6 +10,7 @@ import axios from 'axios'
 import Image from '@ruiyun/preact-image'
 import Icon from '@ruiyun/preact-icon'
 import { WithModal } from '@ruiyun/preact-modal'
+import { WithActionSheet } from '@ruiyun/preact-m-actionsheet'
 import Button from '@ruiyun/preact-m-button'
 
 import Menu from './menu'
@@ -63,7 +64,7 @@ const renderTopModalContent = (onComfirm, condition = {}) => {
               style={inputStyle}
               type='number'
             />
-            <Text>~</Text>
+            <Text color='#ccc'>~</Text>
             <input
               placeholder='最大4000'
               value={priceEnd}
@@ -106,6 +107,7 @@ const renderTopModalContent = (onComfirm, condition = {}) => {
 }
 
 @WithModal
+@WithActionSheet
 export default class ZufangPage extends Component {
   state = {
     updateAt: null,
@@ -139,17 +141,11 @@ export default class ZufangPage extends Component {
   }
   onComfirm = condition => {
     let mergedCondition = Object.assign({}, this.state.filter, condition)
-    console.log(condition, mergedCondition)
     this.props.$modal.hide()
-    this.setState(
-      {
-        filter: mergedCondition,
-        table: this.doFilter(this.state.originTable, mergedCondition)
-      },
-      () => {
-        console.log(this.state.table)
-      }
-    )
+    this.setState({
+      filter: mergedCondition,
+      table: this.doFilter(this.state.originTable, mergedCondition)
+    })
   }
   openFilter = () => {
     this.props.$modal.show({
@@ -158,9 +154,31 @@ export default class ZufangPage extends Component {
       mask: 0.2
     })
   }
+  openActionSheet = () => {
+    const map = ['price', 'transit', 'riding']
+    this.props
+      .$actionsheet('选择排序', ['价格升序', '地铁时间升序', '电瓶车时间升序'])
+      .then(index => {
+        const newFilter = Object.assign({}, this.state.filter, {
+          sortBy: map[index]
+        })
+        this.setState({
+          filter: newFilter,
+          table: this.doFilter(this.state.originTable, newFilter)
+        })
+      })
+  }
   onAction = action => {
     if (action === '筛') {
       this.openFilter()
+    } else if (action === '序') {
+      this.openActionSheet()
+    } else if (action === '顶') {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
     }
   }
   async componentDidMount () {
