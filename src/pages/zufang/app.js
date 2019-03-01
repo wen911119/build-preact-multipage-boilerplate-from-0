@@ -12,6 +12,8 @@ import Icon from '@ruiyun/preact-icon'
 import { WithModal } from '@ruiyun/preact-modal'
 import { WithActionSheet } from '@ruiyun/preact-m-actionsheet'
 import Button from '@ruiyun/preact-m-button'
+import WithNav from '@ruiyun/preact-m-nav'
+import { TouchableInline } from '@ruiyun/preact-m-touchable'
 
 import Menu from './menu'
 
@@ -108,6 +110,7 @@ const renderTopModalContent = (onComfirm, condition = {}) => {
 
 @WithModal
 @WithActionSheet
+@WithNav
 export default class ZufangPage extends Component {
   state = {
     updateAt: null,
@@ -181,6 +184,9 @@ export default class ZufangPage extends Component {
       })
     }
   }
+  gotoDetail = link => {
+    this.props.$nav.push('zfDetail', { link })
+  }
   async componentDidMount () {
     const { data } = await axios.get(
       'https://qc-zufang-helper.oss-cn-shanghai.aliyuncs.com/zfdata.json'
@@ -206,28 +212,36 @@ export default class ZufangPage extends Component {
         </XCenterView>
         <SlotColumnView slot={20} padding={[0, 30, 0, 30]}>
           {table.map(row => (
-            <SlotRowView key={row.link} slot={30}>
-              <Image width={330} height={240} src={row.img} />
-              <SlotColumnView slot={10} style={{ flex: 1 }}>
-                <Text style={only2Line}>{row.title}</Text>
-                <SlotRowView slot={10}>
-                  <Text color='#ccc' size={26}>
-                    价格:
-                  </Text>
-                  <Text color='#ccc'>¥{row.price}</Text>
-                </SlotRowView>
-                <SlotRowView slot={10}>
-                  <Icon size={30} name='icon-ditie' />
-                  <Text color='#e06c57'>{Math.ceil(row.transit / 60)}分钟</Text>
-                </SlotRowView>
-                <SlotRowView slot={10}>
-                  <Icon size={30} name='icon-dianpingche' />
-                  <Text color='#db9c08'>
-                    {Math.ceil(row.riding / 60 / 1.67)}分钟
-                  </Text>
-                </SlotRowView>
-              </SlotColumnView>
-            </SlotRowView>
+            <TouchableInline
+              // eslint-disable-next-line
+              onPress={this.gotoDetail.bind(this, row.link)}
+              key={row.link}
+            >
+              <SlotRowView slot={30}>
+                <Image width={330} height={240} src={row.img} />
+                <SlotColumnView slot={10} style={{ flex: 1 }}>
+                  <Text style={only2Line}>{row.title}</Text>
+                  <SlotRowView slot={10}>
+                    <Text color='#ccc' size={26}>
+                      价格:
+                    </Text>
+                    <Text color='#ccc'>¥{row.price}</Text>
+                  </SlotRowView>
+                  <SlotRowView slot={10}>
+                    <Icon size={30} name='icon-ditie' />
+                    <Text color='#e06c57'>
+                      {Math.ceil(row.transit / 60)}分钟
+                    </Text>
+                  </SlotRowView>
+                  <SlotRowView slot={10}>
+                    <Icon size={30} name='icon-dianpingche' />
+                    <Text color='#db9c08'>
+                      {Math.ceil(row.riding / 60 / 1.67)}分钟
+                    </Text>
+                  </SlotRowView>
+                </SlotColumnView>
+              </SlotRowView>
+            </TouchableInline>
           ))}
         </SlotColumnView>
       </div>
