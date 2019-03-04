@@ -2,7 +2,8 @@ import { h, Component } from 'preact'
 import {
   XCenterView,
   SlotRowView,
-  SlotColumnView
+  SlotColumnView,
+  RowView
 } from '@ruiyun/preact-layout-suite'
 import linkState from 'linkstate'
 import Text from '@ruiyun/preact-text'
@@ -217,23 +218,21 @@ export default class ZufangPage extends Component {
               onPress={this.gotoDetail.bind(this, row.link)}
               key={row.link}
             >
-              <SlotRowView slot={30}>
+              <SlotRowView slot={30} height={260}>
                 <Image width={330} height={240} src={row.img} />
                 <SlotColumnView slot={10} style={{ flex: 1 }}>
-                  <Text style={only2Line}>{row.title}</Text>
-                  <SlotRowView slot={10}>
-                    <Text color='#ccc' size={26}>
-                      价格:
-                    </Text>
-                    <Text color='#ccc'>¥{row.price}</Text>
-                  </SlotRowView>
-                  <SlotRowView slot={10}>
+                  <Text style={only2Line} size={26}>{row.title}</Text>
+                  <RowView>
+                    <Text color='#ccc'>价格：¥{row.price}</Text>
+                  </RowView>
+                  <RowView>
+                    <Text size={24}>{row.desc}</Text>
+                  </RowView>
+                  <SlotRowView slot={20}>
                     <Icon size={30} name='icon-ditie' />
                     <Text color='#e06c57'>
                       {Math.ceil(row.transit / 60)}分钟
                     </Text>
-                  </SlotRowView>
-                  <SlotRowView slot={10}>
                     <Icon size={30} name='icon-dianpingche' />
                     <Text color='#db9c08'>
                       {Math.ceil(row.riding / 60 / 1.67)}分钟
