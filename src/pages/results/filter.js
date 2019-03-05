@@ -9,7 +9,8 @@ const inputStyle = {
   border: '1px solid #ccc',
   height: '0.8rem',
   borderRadius: '0.1rem',
-  textIndent: '0.2rem'
+  textIndent: '0.2rem',
+  width: '3.5rem'
 }
 
 const renderTopModalContent = (onComfirm, condition = {}) => {
