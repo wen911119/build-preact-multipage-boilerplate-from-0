@@ -6,7 +6,8 @@ import Button from '@ruiyun/preact-m-button'
 const menuStyle = {
   position: 'fixed',
   right: '1rem',
-  bottom: '1rem'
+  bottom: '1rem',
+  zIndex: 1
 }
 
 export default class Menu extends Component {

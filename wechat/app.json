@@ -5,7 +5,8 @@
     "pages/list/list",
     "pages/demo/demo",
     "pages/zufang/zufang",
-    "pages/zfDetail/zfDetail"
+    "pages/zfDetail/zfDetail",
+    "pages/hateOrlike/hateOrlike"
   ],
   "window": {
     "backgroundTextStyle": "light",

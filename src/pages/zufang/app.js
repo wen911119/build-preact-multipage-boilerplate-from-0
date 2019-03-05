@@ -105,6 +105,10 @@ export default class ZufangPage extends Component {
         left: 0,
         behavior: 'smooth'
       })
+    } else if (action === '藏') {
+      this.props.$nav.push('hateOrlike', { type: 'like' })
+    } else if (action === '黑') {
+      this.props.$nav.push('hateOrlike', { type: 'dislike' })
     }
   }
   onRecorvery = () => {
