@@ -98,7 +98,7 @@ export default class ZfDetailPage extends Component {
     const {
       data: { table }
     } = await Axios.get(
-      'https://qc-zufang-helper.oss-cn-shanghai.aliyuncs.com/zfdata.json'
+      'https://zufang.ruiyun2015.com/zfdata.json'
     )
     this.$ls = new LocalStorageManager(table)
     const like = this.$ls.check(link, 'like')

@@ -132,7 +132,7 @@ export default class ZufangPage extends Component {
   async componentDidMount () {
     this.props.$nav.onRecorvery(this.onRecorvery)
     const { data } = await axios.get(
-      'https://qc-zufang-helper.oss-cn-shanghai.aliyuncs.com/zfdata.json'
+      'https://zufang.ruiyun2015.com/zfdata.json'
     )
     const filteredTable = this.doFilter(data.table, this.state.filter)
     this.setState({
