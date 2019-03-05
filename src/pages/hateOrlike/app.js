@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import Item from '../zufang/item'
+import Item from '../results/item'
 import WithNav from '@ruiyun/preact-m-nav'
 import { SlotColumnView, XCenterView } from '@ruiyun/preact-layout-suite'
 import Text from '@ruiyun/preact-text'
