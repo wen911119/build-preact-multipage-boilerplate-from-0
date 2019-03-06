@@ -122,7 +122,7 @@ export default class ZufangPage extends Component {
       this.props.$nav.push('hateOrlike', { type: 'dislike' })
     }
   }
-  onRecorvery = () => {
+  onWakeUp = () => {
     const localData = JSON.parse(
       window.localStorage.getItem('_qc_zufang_data_')
     ) || {
@@ -141,7 +141,7 @@ export default class ZufangPage extends Component {
     }
   }
   async componentDidMount () {
-    this.props.$nav.onRecorvery(this.onRecorvery)
+    this.props.$nav.onWakeUp(this.onWakeUp)
     const { data } = await axios.get(
       'https://zufang.ruiyun2015.com/zfdata.json'
     )
