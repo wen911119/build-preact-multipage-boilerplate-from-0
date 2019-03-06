@@ -35,7 +35,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  exclude: ['@babel/plugin-transform-regenerator']
+                }
+              ]
+            ],
             plugins: [
+              ['@babel/plugin-transform-async-to-generator'],
               '@babel/plugin-syntax-dynamic-import',
               [
                 '@babel/plugin-proposal-decorators',
