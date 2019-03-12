@@ -24,7 +24,10 @@ const likeStyle = {
 @WithNav
 export default class Item extends Component {
   shouldComponentUpdate (nextProps) {
-    return this.props.row.link !== nextProps.row.link
+    return (
+      this.props.row.link !== nextProps.row.link ||
+      this.props.row.like !== nextProps.row.like
+    )
   }
   gotoDetail = () => {
     this.props.$nav.push('zfDetail', { link: this.props.row.link })

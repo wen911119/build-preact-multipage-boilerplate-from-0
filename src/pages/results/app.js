@@ -68,12 +68,13 @@ export default class ZufangPage extends Component {
       })
       .sort((a, b) => a[sortBy] - b[sortBy])
       .map(row => {
-        row.img = row.img.replace(
-          'https://image1.ljcdn.com',
-          'https://pic.ruiyun2015.com/zufang'
-        )
-        row.like = !!like.find(lrow => lrow.link === row.link)
-        return row
+        return Object.assign({}, row, {
+          img: row.img.replace(
+            'https://image1.ljcdn.com',
+            'https://pic.ruiyun2015.com/zufang'
+          ),
+          like: !!like.find(lrow => lrow.link === row.link)
+        })
       })
   }
   onFilterComfirm = condition => {
@@ -123,6 +124,7 @@ export default class ZufangPage extends Component {
     }
   }
   onWakeUp = () => {
+    console.log('onWakeUp')
     const localData = JSON.parse(
       window.localStorage.getItem('_qc_zufang_data_')
     ) || {
@@ -134,6 +136,7 @@ export default class ZufangPage extends Component {
       localData.dislike.length !== this.state.filter.dislike.length
     ) {
       const newFilter = Object.assign({}, this.state.filter, localData)
+      console.log(newFilter)
       this.setState({
         filter: newFilter,
         table: this.doFilter(this.state.originTable, newFilter)
