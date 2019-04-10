@@ -14,6 +14,7 @@ import {
 import Button from '@ruiyun/preact-m-button'
 import Icon from '@ruiyun/preact-icon'
 import { TouchableBlock, TouchableInline } from '@ruiyun/preact-m-touchable'
+import WithImagePreview from '@ruiyun/preact-m-image-preview'
 
 const numberLabelStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -85,6 +86,7 @@ class LocalStorageManager {
 }
 
 @WithNav
+@WithImagePreview
 export default class ZfDetailPage extends Component {
   state = {
     images: [],
@@ -215,6 +217,9 @@ export default class ZfDetailPage extends Component {
   goBack = () => {
     this.props.$nav.pop()
   }
+  previewImg = () => {
+    this.props.$preview(this.state.images, this.state.current)
+  }
   render (
     _,
     {
@@ -240,7 +245,7 @@ export default class ZfDetailPage extends Component {
   ) {
     return (
       <div>
-        <div style={{ position: 'relative', height: '75vw' }}>
+        <div style={{ position: 'relative', height: '75vw' }} onClick={this.previewImg}>
           <TouchableInline onPress={this.goBack}>
             <XCenterView style={iconBack} bgColor='rgba(0,0,0,0.5)'>
               <Icon name='icon-fanhui' color='#fff' size={34} />
