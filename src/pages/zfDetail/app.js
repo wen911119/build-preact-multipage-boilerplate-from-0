@@ -14,6 +14,7 @@ import {
 import Button from '@ruiyun/preact-m-button'
 import Icon from '@ruiyun/preact-icon'
 import { TouchableBlock, TouchableInline } from '@ruiyun/preact-m-touchable'
+import './app.css'
 
 const numberLabelStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -240,6 +241,7 @@ export default class ZfDetailPage extends Component {
   ) {
     return (
       <div>
+        <div className='flex'>222</div>
         <div style={{ position: 'relative', height: '75vw' }}>
           <TouchableInline onPress={this.goBack}>
             <XCenterView style={iconBack} bgColor='rgba(0,0,0,0.5)'>
