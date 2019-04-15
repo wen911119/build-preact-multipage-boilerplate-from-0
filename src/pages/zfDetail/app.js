@@ -14,6 +14,7 @@ import {
 import Button from '@ruiyun/preact-m-button'
 import Icon from '@ruiyun/preact-icon'
 import { TouchableBlock, TouchableInline } from '@ruiyun/preact-m-touchable'
+import WithImagePreview from '@ruiyun/preact-m-image-preview'
 import './app.css'
 
 const numberLabelStyle = {
@@ -86,6 +87,7 @@ class LocalStorageManager {
 }
 
 @WithNav
+@WithImagePreview
 export default class ZfDetailPage extends Component {
   state = {
     images: [],
@@ -99,7 +101,7 @@ export default class ZfDetailPage extends Component {
     const {
       data: { table }
     } = await Axios.get(
-      'https://qc-zufang-helper.oss-cn-shanghai.aliyuncs.com/zfdata.json'
+      'https://zufang.ruiyun2015.com/zfdata.json'
     )
     this.$ls = new LocalStorageManager(table)
     const like = this.$ls.check(link, 'like')
@@ -216,6 +218,9 @@ export default class ZfDetailPage extends Component {
   goBack = () => {
     this.props.$nav.pop()
   }
+  previewImg = () => {
+    this.props.$preview(this.state.images, this.state.current)
+  }
   render (
     _,
     {
@@ -241,8 +246,7 @@ export default class ZfDetailPage extends Component {
   ) {
     return (
       <div>
-        <div className='flex'>222</div>
-        <div style={{ position: 'relative', height: '75vw' }}>
+        <div style={{ position: 'relative', height: '75vw' }} onClick={this.previewImg}>
           <TouchableInline onPress={this.goBack}>
             <XCenterView style={iconBack} bgColor='rgba(0,0,0,0.5)'>
               <Icon name='icon-fanhui' color='#fff' size={34} />

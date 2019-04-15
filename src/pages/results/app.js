@@ -10,6 +10,17 @@ import Menu from './menu'
 import Item from './item'
 import renderTopModalContent from './filter'
 
+const formatTime = ts => {
+  const t = new Date(ts)
+  const YYYY = t.getFullYear()
+  const MM = t.getMonth() + 1
+  const DD = t.getDate()
+  const hh = t.getHours()
+  const mm = t.getMinutes()
+  const ss = t.getSeconds()
+  return `${YYYY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+}
+
 @WithModal
 @WithActionSheet
 @WithNav
@@ -57,12 +68,13 @@ export default class ZufangPage extends Component {
       })
       .sort((a, b) => a[sortBy] - b[sortBy])
       .map(row => {
-        row.img = row.img.replace(
-          'https://image1.ljcdn.com',
-          'https://pic.ruiyun2015.com/zufang'
-        )
-        row.like = !!like.find(lrow => lrow.link === row.link)
-        return row
+        return Object.assign({}, row, {
+          img: row.img.replace(
+            'https://image1.ljcdn.com',
+            'https://pic.ruiyun2015.com/zufang'
+          ),
+          like: !!like.find(lrow => lrow.link === row.link)
+        })
       })
   }
   onFilterComfirm = condition => {
@@ -111,7 +123,8 @@ export default class ZufangPage extends Component {
       this.props.$nav.push('hateOrlike', { type: 'dislike' })
     }
   }
-  onRecorvery = () => {
+  onWakeUp = () => {
+    console.log('onWakeUp')
     const localData = JSON.parse(
       window.localStorage.getItem('_qc_zufang_data_')
     ) || {
@@ -123,6 +136,7 @@ export default class ZufangPage extends Component {
       localData.dislike.length !== this.state.filter.dislike.length
     ) {
       const newFilter = Object.assign({}, this.state.filter, localData)
+      console.log(newFilter)
       this.setState({
         filter: newFilter,
         table: this.doFilter(this.state.originTable, newFilter)
@@ -130,14 +144,14 @@ export default class ZufangPage extends Component {
     }
   }
   async componentDidMount () {
-    this.props.$nav.onRecorvery(this.onRecorvery)
+    this.props.$nav.onWakeUp(this.onWakeUp)
     const { data } = await axios.get(
-      'https://qc-zufang-helper.oss-cn-shanghai.aliyuncs.com/zfdata.json'
+      'https://zufang.ruiyun2015.com/zfdata.json'
     )
     const filteredTable = this.doFilter(data.table, this.state.filter)
     this.setState({
       table: filteredTable,
-      updateAt: new Date(data.updateAt).toLocaleString(),
+      updateAt: formatTime(data.updateAt),
       originTable: data.table
     })
   }
@@ -149,12 +163,25 @@ export default class ZufangPage extends Component {
           <Text color='#333'>最近更新于：</Text>
           <Text color='#f8584f'>{updateAt}</Text>
         </XCenterView>
-        <SlotColumnView slot={20} padding={[0, 30, 0, 30]}>
-          {table.map(row => (
-            <Item key={row.link} row={row} />
-          ))}
-        </SlotColumnView>
+        <List rows={table} />
       </div>
+    )
+  }
+}
+
+class List extends Component {
+  shouldComponentUpdate (nextProps) {
+    if (nextProps.rows === this.props.rows) {
+      return false
+    }
+  }
+  render ({ rows }) {
+    return (
+      <SlotColumnView slot={20} padding={[0, 30, 0, 30]}>
+        {rows.map(row => (
+          <Item key={row.link} row={row} />
+        ))}
+      </SlotColumnView>
     )
   }
 }
