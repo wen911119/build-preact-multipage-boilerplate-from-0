@@ -15,6 +15,7 @@ import Button from '@ruiyun/preact-m-button'
 import Icon from '@ruiyun/preact-icon'
 import { TouchableBlock, TouchableInline } from '@ruiyun/preact-m-touchable'
 import WithImagePreview from '@ruiyun/preact-m-image-preview'
+import './app.css'
 
 const numberLabelStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
