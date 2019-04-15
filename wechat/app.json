@@ -1,11 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/home/home",
-    "pages/list/list",
-    "pages/demo/demo",
-    "pages/zufang/zufang",
-    "pages/zfDetail/zfDetail"
+    "pages/results/results",
+    "pages/zfDetail/zfDetail",
+    "pages/hateOrlike/hateOrlike"
   ],
   "window": {
     "backgroundTextStyle": "light",
